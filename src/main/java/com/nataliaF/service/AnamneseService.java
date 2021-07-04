@@ -16,24 +16,24 @@ public class AnamneseService {
 	@Autowired
 	AnamneseRepository repo;
 
-	public Anamnese findById(Integer id) {
+	public Anamnese AnamnesefindById(Integer id) {
 		return repo.findById(id).
 				orElseThrow(() -> new RelatorioNaoEncontradoException(id));
 	}
 
-	public List<Anamnese> todos() {
+	public List<Anamnese> AnamneseAll() {
 		return repo.findAll();
 	}
 
-	public Anamnese save(Anamnese entity) {
+	public Anamnese AnamneseSave(Anamnese entity) {
 		return repo.save(entity);
 	}
 
-	public void delete(Integer id) {
+	public void AnamneseDelete(Integer id) {
 		repo.deleteById(id);
 	}
 
-	public Anamnese atualiza(Integer id, Anamnese entity) {
+	public Anamnese AnamneseUpdate(Integer id, Anamnese entity) {
 		entity.setId(id);
 		return repo.save(entity);
 	}

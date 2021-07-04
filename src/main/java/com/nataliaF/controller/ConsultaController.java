@@ -2,7 +2,10 @@ package com.nataliaF.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,27 +27,28 @@ public class ConsultaController {
 	
 	@GetMapping("{/id}")
 	public Consulta anamnese(@PathVariable Integer id) {
-		return service.findById(id);
+		return service.ConsultafindById(id);
 	}
 
 	@GetMapping
 	public List<Consulta> animais() {
-		return service.todos();
+		return service.ConsultaAll();
 	}
 
 	@PostMapping
-	public Consulta novo(@RequestBody Consulta entity) {
-		return service.save(entity);
+	public ResponseEntity<String> newConsulta(@Valid @RequestBody Consulta entity) {
+		service.ConsultaSave(entity);
+		return ResponseEntity.ok("Consulta cadastrada com sucesso.");
 	}
 
 	@DeleteMapping("/{id}")
 	public void delete(@PathVariable Integer id) {
-		service.delete(id);
+		service.AnimalDelete(id);
 	}
 
 	@PutMapping("/{id}")
 	public Consulta atualiza(@PathVariable Integer id, @RequestBody Consulta entity) {
-		return service.atualiza(id, entity);
+		return service.AnimalUpdate(id, entity);
 	}
 
 }

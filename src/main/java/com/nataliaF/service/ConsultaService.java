@@ -17,24 +17,24 @@ public class ConsultaService {
 	@Autowired
 	 ConsultaRepository repo;
 	
-	public Consulta findById(Integer id) {
+	public Consulta ConsultafindById(Integer id) {
 		return repo.findById(id).
 				orElseThrow(() -> new ConsultaNaoEncontradoException(id));
 	}
 
-	public List<Consulta> todos() {
+	public List<Consulta> ConsultaAll() {
 		return repo.findAll();
 	}
 
-	public Consulta save(Consulta entity) {
+	public Consulta ConsultaSave(Consulta entity) {
 		return repo.save(entity);
 	}
 
-	public void delete(Integer id) {
+	public void AnimalDelete(Integer id) {
 		repo.deleteById(id);
 	}
 
-	public Consulta atualiza(Integer id, Consulta entity) {
+	public Consulta AnimalUpdate(Integer id, Consulta entity) {
 		entity.setId(id);
 		return repo.save(entity);
 	}

@@ -2,7 +2,10 @@ package com.nataliaF.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,27 +25,28 @@ public class AnimalController {
 	private AnimalService service;
 
 	@GetMapping("{/id}")
-	public Animal anamnese(@PathVariable Integer id) {
-		return service.findById(id);
+	public Animal animal(@PathVariable Integer id) {
+		return service.AnimalfindById(id);
 	}
 
 	@GetMapping
 	public List<Animal> animais() {
-		return service.todos();
+		return service.AnimalAll();
 	}
 
 	@PostMapping
-	public Animal novo(@RequestBody Animal entity) {
-		return service.save(entity);
+	public ResponseEntity<String> newAnimal(@Valid @RequestBody Animal entity) {
+		service.AnimalSave(entity);
+		return ResponseEntity.ok("Animal cadastrado com sucesso."); 
 	}
 
 	@DeleteMapping("/{id}")
 	public void delete(@PathVariable Integer id) {
-		service.delete(id);
+		service.Animaldelete(id);
 	}
 
 	@PutMapping("/{id}")
 	public Animal atualiza(@PathVariable Integer id, @RequestBody Animal entity) {
-		return service.atualiza(id, entity);
+		return service.AnimalUpdate(id, entity);
 	}
 }

@@ -16,24 +16,24 @@ public class ExameService {
 	@Autowired
 	 ExameRepository repo;
 	
-	public Exame findById(Integer id) {
+	public Exame ExamefindById(Integer id) {
 		return repo.findById(id).
 				orElseThrow(() -> new ExameNaoEncontradoException(id));
 	}
 
-	public List<Exame> todos() {
+	public List<Exame> ExameAll() {
 		return repo.findAll();
 	}
 
-	public Exame save(Exame entity) {
+	public Exame ExameSave(Exame entity) {
 		return repo.save(entity);
 	}
 
-	public void delete(Integer id) {
+	public void ExameDelete(Integer id) {
 		repo.deleteById(id);
 	}
 
-	public Exame atualiza(Integer id, Exame entity) {
+	public Exame ExameUpdate(Integer id, Exame entity) {
 		entity.setId(id);
 		return repo.save(entity);
 	}

@@ -2,7 +2,10 @@ package com.nataliaF.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,29 +23,31 @@ import com.nataliaF.service.AnamneseService;
 public class AnamneseController {
 	@Autowired
 	AnamneseService service;
+	
 	@GetMapping("{/id}")
 	public Anamnese anamnese(@PathVariable Integer id) {
-		return service.findById(id);
+		return service.AnamnesefindById(id);
 	}
 
 	@GetMapping
 	public List<Anamnese> animais() {
-		return service.todos();
+		return service.AnamneseAll();
 	}
 
 	@PostMapping
-	public Anamnese novo(@RequestBody Anamnese entity) {
-		return service.save(entity);
+	public ResponseEntity<String> newAnamnese(@Valid @RequestBody Anamnese entity) {
+		service.AnamneseSave(entity);
+		return ResponseEntity.ok("Anamese cadastrada com sucesso."); 
 	}
 
 	@DeleteMapping("/{id}")
 	public void delete(@PathVariable Integer id) {
-		service.delete(id);
+		service.AnamneseDelete(id);
 	}
 
 	@PutMapping("/{id}")
 	public Anamnese atualiza(@PathVariable Integer id, @RequestBody Anamnese entity) {
-		return service.atualiza(id, entity);
+		return service.AnamneseUpdate(id, entity);
 	}
 
 }

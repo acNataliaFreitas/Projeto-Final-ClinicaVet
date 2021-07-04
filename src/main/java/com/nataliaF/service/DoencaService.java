@@ -10,32 +10,32 @@ import com.nataliaF.domain.Doenca;
 import com.nataliaF.repository.DoencaRepository;
 import com.nataliaF.service.exception.DoencaNaoEncontradoException;
 
+@RestController
+@RequestMapping("/doenca")
 public class DoencaService {
-	@RestController
-	@RequestMapping("/doenca")
-	public class ExameService {
-		@Autowired
-		DoencaRepository repo;
-
-		public Doenca findById(Integer id) {
-			return repo.findById(id).orElseThrow(() -> new DoencaNaoEncontradoException(id));
-		}
-
-		public List<Doenca> todos() {
-			return repo.findAll();
-		}
-
-		public Doenca save(Doenca entity) {
-			return repo.save(entity);
-		}
-
-		public void delete(Integer id) {
-			repo.deleteById(id);
-		}
-
-		public Doenca atualiza(Integer id, Doenca entity) {
-			entity.setId(id);
-			return repo.save(entity);
-		}
+	
+	@Autowired
+	DoencaRepository repo;
+	
+	public Doenca DoencafindById(Integer id) {
+		return repo.findById(id).
+				orElseThrow(() -> new DoencaNaoEncontradoException(id));
+	}
+	
+	public List<Doenca> DoencaAll(){
+		return repo.findAll();
+	}
+	
+	public Doenca DoencaSave(Doenca entity) {
+		return repo.save(entity);
+	}
+	
+	public void DoencaDelete(Integer id) {
+		repo.deleteById(id);
+	}
+	
+	public Doenca DoencaUpdate(Integer id, Doenca entity) {
+		entity.setId(id);
+		return repo.save(entity);
 	}
 }
